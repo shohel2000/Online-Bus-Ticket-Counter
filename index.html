@@ -112,10 +112,12 @@
                     </div>
                 </div>
             </div>
-            <button id="booking-confirm-btn" class="btn-style"><p>Book Now</p></button>
+            <button id="booking-confirm-btn" class="btn-style">
+                <p>Book Now</p>
+            </button>
         </div>
 
-<!-- ====== booking successful form ====== -->
+        <!-- ====== booking successful form ====== -->
         <div id="booking-successful-form" class="booking-successful-form">
             <h1 class="successful-header-text">Your Booking is <span class="successful">successful!</span></h1><br>
             <div class="amount">
@@ -211,8 +213,8 @@
             return TicketQuantity;
         }
 
-// ====== calculate successful box ====== 
-        document.getElementById('booking-confirm-btn').addEventListener('click', function(){
+        // ====== calculate successful box ====== 
+        document.getElementById('booking-confirm-btn').addEventListener('click', function () {
             document.getElementById('booking-form').style.display = 'none';
             document.getElementById('booking-successful-form').style.display = 'block';
 
