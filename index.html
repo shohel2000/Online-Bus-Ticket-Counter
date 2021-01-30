@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+
+        <div class="booking-content">
+            <h1>Mega City Bus</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book.</p>
+        </div>
+
+
+        <div id="booking-form" class="booking-form">
+            <h3>Explore By Bus</h3>
+
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">From</label>
+                        <input class="inp-style" type="text" name="" placeholder="Dhaka">
+                </div>
+                <div class="input-group">
+                    <label" for="">From</label>
+                        <input class="inp-style" type="text" name="" placeholder="Chittagone">
+                </div>
+            </div>
+
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="inputs">
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">First Class ($150)</label>
+                        <input id="firstClassQuantity" class="inp-style inp-width" type="number" name="" value="0">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <button onclick="ticketQuantity('firstClass', true)" class="quantity-btn">+</button>
+                        <button onclick="ticketQuantity('firstClass', false)" class="quantity-btn">-</button>
+                    </div>
+                </div>
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">Economy ($100)</label>
+                        <input id="economyClassQuantity" class="inp-style inp-width" type="number" name="" value="0">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <button onclick="ticketQuantity('economyClass', true)" class="quantity-btn">+</button>
+                        <button onclick="ticketQuantity('economyClass', false)" class="quantity-btn">-</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="subtotal">$00</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="tax">$0</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="total">$0</p>
+                    </div>
+                </div>
+            </div>
+            <button id="booking-confirm-btn" class="btn-style"><p>Book Now</p></button>
+        </div>
+
+<!-- ====== booking successful form ====== -->
+        <div id="booking-successful-form" class="booking-successful-form">
+            <h1 class="successful-header-text">Your Booking is <span class="successful">successful!</span></h1><br>
+            <div class="amount">
+                <div class="left">
+                    <h3>Ticket Quantity</h3>
+                </div>
+                <div class="right">
+                    <h3>Amount</h3>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <p>First class ticket ......... <span id="FirstClassTotalQuantity">0</span></p>
+                </div>
+                <div class="right">
+                    <p id="firstClassTotalCost">$00</p>
+                </div>
+            </div>
+            <div class="amount">
+                <div class="left">
+                    <p>Economy ticket ........... <span id="economyTotalQuantity">0</span></p>
+                </div>
+                <div class="right">
+                    <p id="economyTotalCost">$00</p>
+                </div>
+            </div>
+
+            <div class="amount">
+                <div class="left">
+                    <p>Total VAT (10%) ..........</p>
+                </div>
+                <div class="right">
+                    <p id="totalVat">$0</p>
+                </div>
+            </div>
+            <hr>
+            <div class="amount">
+                <div class="left">
+                    <h3>Total</h3>
+                </div>
+                <div class="right">
+                    <p id="totalAmount">$0</p>
+                </div>
+            </div>
+            <div class="successful-footer">
+                <h3>Thank you</h3>
+                <p>HelpLine: 01701-354552</p>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script>
+        function ticketQuantity(ticket, IsIncrement) {
+            const firstClassQuantity = document.getElementById(ticket + 'Quantity');
+            const firstClassQuantityNum = parseInt(firstClassQuantity.value);
+            let newFirstClassQuantity = firstClassQuantityNum;
+            if (IsIncrement == true) {
+                newFirstClassQuantity = firstClassQuantityNum + 1;
+            }
+            if (IsIncrement == false && firstClassQuantityNum > 0) {
+                newFirstClassQuantity = firstClassQuantityNum - 1;
+            }
+            firstClassQuantity.value = newFirstClassQuantity;
+
+            let firstClassTicketCost = 0;
+            if (ticket == 'firstClass') {
+                firstClassTicketCost = newFirstClassQuantity * 150;
+            }
+            if (ticket == 'economyClass') {
+                firstClassTicketCost = newFirstClassQuantity * 100;
+            }
+            totalTicketCost();
+        }
+
+
+        function totalTicketCost() {
+            const firstClassTicketQuantity = inputQuantity('firstClass');
+            const economyClassTicketQuantity = inputQuantity('economyClass');
+            const subtotal = firstClassTicketQuantity * 150 + economyClassTicketQuantity * 100;
+            document.getElementById('subtotal').innerText = '$' + subtotal;
+            const tax = Math.round(subtotal * 0.1);
+            document.getElementById('tax').innerText = '$' + tax;
+            const total = subtotal + tax;
+            document.getElementById('total').innerText = '$' + total;
+        }
+
+
+        function inputQuantity(ticket) {
+            const inputTicketQuantity = document.getElementById(ticket + 'Quantity');
+            const TicketQuantity = parseInt(inputTicketQuantity.value);
+            return TicketQuantity;
+        }
+
+// ====== calculate successful box ====== 
+        document.getElementById('booking-confirm-btn').addEventListener('click', function(){
+            document.getElementById('booking-form').style.display = 'none';
+            document.getElementById('booking-successful-form').style.display = 'block';
+
+            const firstClassTicketQuantity = inputQuantity('firstClass');
+            const economyClassTicketQuantity = inputQuantity('economyClass');
+            document.getElementById('FirstClassTotalQuantity').innerText = firstClassTicketQuantity;
+            document.getElementById('economyTotalQuantity').innerText = economyClassTicketQuantity;
+
+            const firstClassTotalCost = firstClassTicketQuantity * 150;
+            document.getElementById('firstClassTotalCost').innerText = '$' + firstClassTotalCost;
+
+            const economyTotalCost = economyClassTicketQuantity * 100;
+            document.getElementById('economyTotalCost').innerText = '$' + economyTotalCost;
+
+            const totalVat = (firstClassTotalCost + economyTotalCost) * 0.1;
+            document.getElementById('totalVat').innerText = '$' + totalVat;
+
+            const totalAmount = firstClassTotalCost + economyTotalCost + totalVat;
+            document.getElementById('totalAmount').innerText = '$' + totalAmount;
+        })
+
+    </script>
+    <!--Thank You-->
+</body>
+
+</html>
